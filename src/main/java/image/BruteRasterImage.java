@@ -19,8 +19,12 @@ public class BruteRasterImage implements Image {
 
     }
 
+    /*
+     * Modifie la valeur de width
+     * @param un entier
+     */
     protected void setWidth(int width){
-
+        this.width = width;
     }
 
     protected void setHeight(int height){
@@ -40,8 +44,9 @@ public class BruteRasterImage implements Image {
     }
 
     /*
-    * Rnvoie le pixel aux coordonne x, y.
-    * @return pixel[x][y].
+     * Rnvoie le pixel aux coordonne x, y.
+     * @param Deux entiers qui represente l'abscisse et l'ordonnee.
+     * @return pixel[x][y].
      */
     @Override
     public Color getPixelColor(int x, int y) {
@@ -49,8 +54,8 @@ public class BruteRasterImage implements Image {
     }
 
     /*
-    * Renvoie la largeur de la fenetre.
-    * @return this.width
+     * Renvoie la largeur de la fenetre.
+     * @return this.width
      */
     @Override
     public int getWidth() {
