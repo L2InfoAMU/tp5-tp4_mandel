@@ -15,8 +15,11 @@ public class BruteRasterImage implements Image {
 
     }
 
+    /*
+     * La fonction alloue la tableau pixels.
+     */
     public void createRepresentatiion(){
-
+        this.pixels = new Color[this.width][this.height];
     }
 
     /*
