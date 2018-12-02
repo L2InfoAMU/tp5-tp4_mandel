@@ -30,8 +30,12 @@ public class BruteRasterImage implements Image {
         this.width = width;
     }
 
+    /*
+     * Modifie la valeur de height
+     * @param un entier
+     */
     protected void setHeight(int height){
-
+        this.height = height;
     }
 
     public void setPixelColor(Color color, int x, int y){
