@@ -39,14 +39,18 @@ public class BruteRasterImage implements Image {
 
     }
 
+    /*
+    * Rnvoie le pixel aux coordonne x, y.
+    * @return pixel[x][y].
+     */
     @Override
     public Color getPixelColor(int x, int y) {
-        return null;
+        return this.pixels[x][y];
     }
 
     /*
-    * Renvoi la largeur de la fenetre.
-    *  @return this.width
+    * Renvoie la largeur de la fenetre.
+    * @return this.width
      */
     @Override
     public int getWidth() {
