@@ -38,8 +38,12 @@ public class BruteRasterImage implements Image {
         this.height = height;
     }
 
+    /*
+     * Change la valeur du pixel a la position donnee
+     * @param une color, et la position donnee par x et y.
+     */
     public void setPixelColor(Color color, int x, int y){
-
+        this.pixels[x][y] = color;
     }
 
     private void setPixelsColor(Color[][] pixels){
