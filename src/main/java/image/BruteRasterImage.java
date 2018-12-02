@@ -7,8 +7,19 @@ public class BruteRasterImage implements Image {
     private int width;
     private int height;
 
+    /*
+     * Constructeur de l'objet
+     * @param une couleur de type Color et deux entiers pour la largeur et la hauteur de la fenetre.
+     */
     public BruteRasterImage(Color color, int width, int height){
-
+        this.width = width;
+        this.height = height;
+        createRepresentatiion();
+        for (int row = 0; row < width; row++){
+            for (int column = 0; column < height ; column++){
+                this.pixels[row][column] = color;
+            }
+        }
     }
 
     public BruteRasterImage(Color[][] pixels){
@@ -48,7 +59,7 @@ public class BruteRasterImage implements Image {
 
     /*
      * recopie la matrice passe en parametre.
-     * @param miatrice de Color
+     * @param matrice de Color
      */
     private void setPixelsColor(Color[][] pixels){
         this.pixels = pixels.clone();
