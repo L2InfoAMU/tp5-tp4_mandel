@@ -44,13 +44,21 @@ public class BruteRasterImage implements Image {
         return null;
     }
 
+    /*
+    * Renvoi la largeur de la fenetre.
+    *  @return this.width
+     */
     @Override
     public int getWidth() {
         return this.width;
     }
 
+    /*
+     * Renvoie la hauteur de la fenetre.
+     * @return this.height
+     */
     @Override
     public int getHeight() {
-        return 0;
+        return this.height;
     }
 }
