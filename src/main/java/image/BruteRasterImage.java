@@ -46,8 +46,12 @@ public class BruteRasterImage implements Image {
         this.pixels[x][y] = color;
     }
 
+    /*
+     * recopie la matrice passe en parametre.
+     * @param miatrice de Color
+     */
     private void setPixelsColor(Color[][] pixels){
-
+        this.pixels = pixels.clone();
     }
 
     /*
