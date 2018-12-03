@@ -1,6 +1,9 @@
 package image;
+import util.Matrices;
 
 import javafx.scene.paint.Color;
+
+import static util.Matrices.requiresRectangularMatrix;
 
 public class BruteRasterImage implements Image {
     private Color[][] pixels;
@@ -14,7 +17,7 @@ public class BruteRasterImage implements Image {
     public BruteRasterImage(Color color, int width, int height){
         this.width = width;
         this.height = height;
-        createRepresentatiion();
+        createRepresentation();
         for (int row = 0; row < width; row++){
             for (int column = 0; column < height ; column++){
                 this.pixels[row][column] = color;
@@ -22,14 +25,20 @@ public class BruteRasterImage implements Image {
         }
     }
 
+    /*
+     * Contrusteur de l'objet qui prend en parametre une matrice de type Color
+     * @param un tableau a deux dimensions de type Color
+     */
     public BruteRasterImage(Color[][] pixels){
-
+        createRepresentation();
+        requiresRectangularMatrix(pixels);
+        this.pixels = pixels.clone();
     }
 
     /*
      * La fonction alloue la tableau pixels.
      */
-    public void createRepresentatiion(){
+    public void createRepresentation(){
         this.pixels = new Color[this.width][this.height];
     }
 
