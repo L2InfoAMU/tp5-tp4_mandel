@@ -31,11 +31,19 @@ public class PaletteRasterImage implements Image {
         return this.;
     }
 
+    /**
+     * Renvoi la largeur de la fenetre
+     * @return this.width
+     */
     @Override
     public int getWidth() {
         return this.width;
     }
 
+    /**
+     * Renvoi la hauteur de la fenetre
+     * @return this.height
+     */
     @Override
     public int getHeight() {
         return this.height;
