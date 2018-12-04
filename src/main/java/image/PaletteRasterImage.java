@@ -18,6 +18,10 @@ public class PaletteRasterImage implements Image {
         this.width = width;
     }
 
+    /**
+     * Renvoi la largeur de la fenetre.
+     * @param height
+     */
     protected void setHeight(int height){
         this.height = height;
     }
