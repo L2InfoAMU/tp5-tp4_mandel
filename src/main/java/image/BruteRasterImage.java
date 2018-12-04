@@ -1,18 +1,20 @@
 package image;
-import util.Matrices;
 
+import util.Matrices;
 import javafx.scene.paint.Color;
 
-import static util.Matrices.requiresRectangularMatrix;
+import static util.Matrices.*;
 
 public class BruteRasterImage implements Image {
     private Color[][] pixels;
     private int width;
     private int height;
 
-    /*
-     * Constructeur de l'objet
-     * @param une couleur de type Color et deux entiers pour la largeur et la hauteur de la fenetre.
+    /**
+     * Constructeur de l'objet de type BruteRasterImage
+     * @param color une couleur
+     * @param width un entier
+     * @param height un entier
      */
     public BruteRasterImage(Color color, int width, int height){
         this.width = width;
@@ -25,58 +27,64 @@ public class BruteRasterImage implements Image {
         }
     }
 
-    /*
+    /**
      * Contrusteur de l'objet qui prend en parametre une matrice de type Color
-     * @param un tableau a deux dimensions de type Color
+     * @param pixels matrice de type color.
      */
     public BruteRasterImage(Color[][] pixels){
-        createRepresentation();
         requiresRectangularMatrix(pixels);
+        requiresNonNull(pixels);
+        requiresNonZeroDimensions(pixels);
+        setHeight(getColumnCount(pixels));
+        setWidth(getRowCount(pixels));
+        createRepresentation();
         this.pixels = pixels.clone();
     }
 
-    /*
+    /**
      * La fonction alloue la tableau pixels.
      */
     public void createRepresentation(){
         this.pixels = new Color[this.width][this.height];
     }
 
-    /*
-     * Modifie la valeur de width
-     * @param un entier
+    /**
+     * Modifie la largeur de la fenetre
+     * @param width un entier
      */
     protected void setWidth(int width){
         this.width = width;
     }
 
-    /*
-     * Modifie la valeur de height
-     * @param un entier
+    /**
+     * Modifie la hauteur de la fenetre
+     * @param height un entier.
      */
     protected void setHeight(int height){
         this.height = height;
     }
 
-    /*
-     * Change la valeur du pixel a la position donnee
-     * @param une color, et la position donnee par x et y.
+    /**
+     * Change la valeur du pixel a la position donnée
+     * @param color de type color
+     * @param x de type int
+     * @param y de type int
      */
     public void setPixelColor(Color color, int x, int y){
         this.pixels[x][y] = color;
     }
 
-    /*
-     * recopie la matrice passe en parametre.
-     * @param matrice de Color
+    /**
+     * recopie la matrice pixels passe en parametre.
+     * @param pixels de Color
      */
     private void setPixelsColor(Color[][] pixels){
         this.pixels = pixels.clone();
     }
 
-    /*
+    /**
      * La fonction initialise tous les pixels de la matrice a la meme couleur.
-     * @param une couleur de type Color.
+     * @param color de type Color.
      */
     private void setPixelsColor(Color color){
         for (int row = 0; row < this.width; row++ ){
@@ -86,17 +94,18 @@ public class BruteRasterImage implements Image {
         }
     }
 
-    /*
+    /**
      * Rnvoie le pixel aux coordonne x, y.
-     * @param Deux entiers qui represente l'abscisse et l'ordonnee.
-     * @return pixel[x][y].
+     * @param x un entier,
+     * @param y un entier.
+     * @return pixels[x][y].
      */
     @Override
     public Color getPixelColor(int x, int y) {
         return this.pixels[x][y];
     }
 
-    /*
+    /**
      * Renvoie la largeur de la fenetre.
      * @return this.width
      */
@@ -105,7 +114,7 @@ public class BruteRasterImage implements Image {
         return this.width;
     }
 
-    /*
+    /**
      * Renvoie la hauteur de la fenetre.
      * @return this.height
      */
