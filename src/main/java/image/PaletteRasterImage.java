@@ -41,8 +41,7 @@ public class PaletteRasterImage implements Image {
      * @param x de type entier.
      * @param y de type entier.
      */
-    public void setPixelColor(Color color, int x, int y)
-    {
+    public void setPixelColor(Color color, int x, int y) {
         int tmp = palette.indexOf(color);
         if(tmp == -1)
         {
@@ -51,9 +50,27 @@ public class PaletteRasterImage implements Image {
         }
         indexesOfColors[x][y] = tmp;
     }
+
+    /**
+     * la methode vide la palette et rajoute la couleur dans la liste et fixe tous les pixels
+     * de la couleur contenue dans la liste.
+     * @param color
+     */
     private void setPixelsColor(Color color){
+        palette.clear();
+        palette.add(color);
+        for (int row = 0; row < width; row++){
+            for (int column = 0; column < height; column++){
+                this.indexesOfColors[row][column] = 0;
+            }
+        }
+    }
+
+    public void setPixelsColor(Color[][] pixels)
+    {
 
     }
+
     /**
      * La fonction renvoie la couleur contenue dans la liste au coordonnées x, y.
      * @param x un entier
