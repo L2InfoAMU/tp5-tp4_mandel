@@ -12,6 +12,19 @@ public class PaletteRasterImage implements Image {
     List<Color> palette;
 
     /**
+     * Constructeur de l'objet.
+     * @param color de type Color
+     * @param width de type entier
+     * @param height de type entier
+     */
+    public PaletteRasterImage(Color color, int width, int height) {
+       this.width = width;
+       this.height = height;
+       createRepresentation();
+       setPixelsColor(color);
+    }
+
+    /**
      * La methode alloue le tableau d'entiers et cree la liste de couleur.
      */
     public void createRepresentation(){
