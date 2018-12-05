@@ -24,6 +24,10 @@ public class PaletteRasterImage implements Image {
        setPixelsColor(color);
     }
 
+    public PaletteRasterImage(Color[][] pixels){
+
+    }
+
     /**
      * La methode alloue le tableau d'entiers et cree la liste de couleur.
      */
@@ -79,9 +83,20 @@ public class PaletteRasterImage implements Image {
         }
     }
 
-    public void setPixelsColor(Color[][] pixels)
-    {
-
+    /**
+     * Met à jour les valeurs de couleurs de l’image
+     * en utilisant les valeurs de la matrice donnée en paramètre.
+     * @param pixels de type Color
+     */
+    public void setPixelsColor(Color[][] pixels) {
+        for (int row = 0; row < pixels.length; row++){
+            for (int column = 0; column < pixels[0].length; column++){
+                if (palette.indexOf(pixels[row][column]) == -1){
+                    palette.add(pixels[row][column]);
+                }
+                indexesOfColors[row][column] = palette.indexOf(pixels[row][column]);
+            }
+        }
     }
 
     /**
