@@ -1,6 +1,8 @@
 package image;
 
 import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class PaletteRasterImage implements Image {
@@ -9,6 +11,13 @@ public class PaletteRasterImage implements Image {
     int[][] indexesOfColors;
     List<Color> palette;
 
+    /**
+     * La methode alloue le tableau d'entiers et cree la liste de couleur.
+     */
+    public void createRepresentation(){
+        this.indexesOfColors = new int[this.width][this.height];
+        this.palette = new ArrayList<>();
+    }
 
     /**
      * Modifie la largeur de la fenetre.
@@ -26,9 +35,34 @@ public class PaletteRasterImage implements Image {
         this.height = height;
     }
 
+    /**
+     * La methode fixe la couleur d'un pixel et ajoute la couleur a la palette si elle existe pas
+     * @param color de type Color.
+     * @param x de type entier.
+     * @param y de type entier.
+     */
+    public void setPixelColor(Color color, int x, int y)
+    {
+        int tmp = palette.indexOf(color);
+        if(tmp == -1)
+        {
+            palette.add(color);
+            tmp = palette.size()-1;
+        }
+        indexesOfColors[x][y] = tmp;
+    }
+    private void setPixelsColor(Color color){
+
+    }
+    /**
+     * La fonction renvoie la couleur contenue dans la liste au coordonnées x, y.
+     * @param x un entier
+     * @param y un entier
+     * @return palette de type Color.
+     */
     @Override
     public Color getPixelColor(int x, int y) {
-        return this.;
+        return palette.get(indexesOfColors[x][y]);
     }
 
     /**

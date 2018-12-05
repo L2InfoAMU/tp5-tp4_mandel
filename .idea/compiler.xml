@@ -9,8 +9,5 @@
         <module name="Image" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Image" target="10" />
-    </bytecodeTargetLevel>
   </component>
 </project>
