@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Image" />
+        <module name="tp5-tp4_mandel" />
       </profile>
     </annotationProcessing>
   </component>
