@@ -29,7 +29,13 @@ public class VectorImage implements Image{
 
     @Override
     public Color getPixelColor(int x, int y) {
-        return null;
+        Point toSearch = new Point(x, y);
+        for (Shape shape : shapes){
+            if (shape.contains(toSearch)){
+                return shape.getColor();
+            }
+        }
+        return Color.WHITE;
     }
 
     @Override
