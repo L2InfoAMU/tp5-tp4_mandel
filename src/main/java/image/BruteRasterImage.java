@@ -5,10 +5,8 @@ import javafx.scene.paint.Color;
 
 import static util.Matrices.*;
 
-public class BruteRasterImage implements Image {
+public class BruteRasterImage extends RasterImage{
     private Color[][] pixels;
-    private int width;
-    private int height;
 
     /**
      * Constructeur de l'objet de type BruteRasterImage
@@ -17,8 +15,7 @@ public class BruteRasterImage implements Image {
      * @param height un entier
      */
     public BruteRasterImage(Color color, int width, int height){
-        setWidth(width);
-        setHeight(height);
+        super(color, width, height);
         createRepresentation();
         setPixelsColor(color);
     }
@@ -28,11 +25,7 @@ public class BruteRasterImage implements Image {
      * @param pixels matrice de type color.
      */
     public BruteRasterImage(Color[][] pixels){
-        requiresRectangularMatrix(pixels);
-        requiresNonNull(pixels);
-        requiresNonZeroDimensions(pixels);
-        setHeight(getColumnCount(pixels));
-        setWidth(getRowCount(pixels));
+        super(pixels);
         createRepresentation();
         setPixelsColor(pixels);
     }
@@ -41,23 +34,7 @@ public class BruteRasterImage implements Image {
      * La fonction alloue la tableau pixels.
      */
     public void createRepresentation(){
-        this.pixels = new Color[this.width][this.height];
-    }
-
-    /**
-     * Modifie la largeur de la fenetre
-     * @param width un entier
-     */
-    protected void setWidth(int width){
-        this.width = width;
-    }
-
-    /**
-     * Modifie la hauteur de la fenetre
-     * @param height un entier.
-     */
-    protected void setHeight(int height){
-        this.height = height;
+        this.pixels = new Color[getWidth()][getHeight()];
     }
 
     /**
@@ -71,31 +48,6 @@ public class BruteRasterImage implements Image {
     }
 
     /**
-     * recopie la matrice pixels passe en parametre.
-     * @param pixels de Color
-     */
-    private void setPixelsColor(Color[][] pixels) {
-        for (int row = 0; row < getWidth(); row++) {
-            for (int column = 0; column < getHeight(); column++) {
-                setPixelColor(pixels[row][column], row, column);
-
-            }
-        }
-    }
-
-    /**
-     * La fonction initialise tous les pixels de la matrice a la meme couleur.
-     * @param color de type Color.
-     */
-    private void setPixelsColor(Color color){
-        for (int row = 0; row < getWidth(); row++ ){
-            for (int column = 0; column < getHeight(); column++){
-                setPixelColor(color, row, column);
-            }
-        }
-    }
-
-    /**
      * Rnvoie le pixel aux coordonne x, y.
      * @param x un entier,
      * @param y un entier.
@@ -106,21 +58,4 @@ public class BruteRasterImage implements Image {
         return this.pixels[x][y];
     }
 
-    /**
-     * Renvoie la largeur de la fenetre.
-     * @return this.width
-     */
-    @Override
-    public int getWidth() {
-        return this.width;
-    }
-
-    /**
-     * Renvoie la hauteur de la fenetre.
-     * @return this.height
-     */
-    @Override
-    public int getHeight() {
-        return this.height;
-    }
 }

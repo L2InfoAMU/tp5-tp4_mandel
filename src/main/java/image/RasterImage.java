@@ -3,11 +3,11 @@ package image;
 import javafx.scene.paint.Color;
 
 import static util.Matrices.*;
-import static util.Matrices.getRowCount;
 
 public abstract class RasterImage implements Image {
     private int width;
     private int height;
+
     /**
      * Constructeur de l'objet de type BruteRasterImage
      * @param color une couleur
@@ -17,8 +17,6 @@ public abstract class RasterImage implements Image {
     public RasterImage(Color color, int width, int height){
         setWidth(width);
         setHeight(height);
-        createRepresentation();
-        setPixelsColor(color);
     }
 
     /**
@@ -31,8 +29,6 @@ public abstract class RasterImage implements Image {
         requiresNonZeroDimensions(pixels);
         setHeight(getColumnCount(pixels));
         setWidth(getRowCount(pixels));
-        createRepresentation();
-        setPixelsColor(pixels);
     }
 
     public abstract void createRepresentation();
@@ -68,10 +64,9 @@ public abstract class RasterImage implements Image {
      * recopie la matrice pixels passe en parametre.
      * @param pixels de Color
      */
-    private void setPixelsColor(Color[][] pixels) {
+    protected void setPixelsColor(Color[][] pixels) {
         for (int row = 0; row < getWidth(); row++) {
             for (int column = 0; column < getHeight(); column++) {
-                //this.pixels[row][column] = pixels[row][column];
                 setPixelColor(pixels[row][column],row,column);
             }
         }
@@ -81,7 +76,7 @@ public abstract class RasterImage implements Image {
      * La fonction initialise tous les pixels de la matrice a la meme couleur.
      * @param color de type Color.
      */
-    private void setPixelsColor(Color color){
+    protected void setPixelsColor(Color color){
         for (int row = 0; row < getWidth(); row++ ){
             for (int column = 0; column < getHeight(); column++){
                 setPixelColor(color, row, column);

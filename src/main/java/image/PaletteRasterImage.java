@@ -8,9 +8,7 @@ import java.util.List;
 import static util.Matrices.*;
 import static util.Matrices.getRowCount;
 
-public class PaletteRasterImage implements Image {
-   private int height;
-   private int width;
+public class PaletteRasterImage extends RasterImage {
    private int[][] indexesOfColors;
    private List<Color> palette;
 
@@ -20,11 +18,10 @@ public class PaletteRasterImage implements Image {
      * @param width de type entier
      * @param height de type entier
      */
-    public PaletteRasterImage(Color color, int width, int height) {
-       this.width = width;
-       this.height = height;
-       createRepresentation();
-       setPixelsColor(color);
+    public PaletteRasterImage(Color color, int width, int height){
+        super(color, width, height);
+        createRepresentation();
+        setPixelsColor(color);
     }
 
     /**
@@ -32,11 +29,7 @@ public class PaletteRasterImage implements Image {
      * @param pixels
      */
     public PaletteRasterImage(Color[][] pixels){
-        requiresRectangularMatrix(pixels);
-        requiresNonNull(pixels);
-        requiresNonZeroDimensions(pixels);
-        setHeight(getColumnCount(pixels));
-        setWidth(getRowCount(pixels));
+        super(pixels);
         createRepresentation();
         setPixelsColor(pixels);
     }
@@ -45,24 +38,8 @@ public class PaletteRasterImage implements Image {
      * La methode alloue le tableau d'entiers et cree la liste de couleur.
      */
     public void createRepresentation(){
-        this.indexesOfColors = new int[this.width][this.height];
+        this.indexesOfColors = new int[getWidth()][getHeight()];
         this.palette = new ArrayList<>();
-    }
-
-    /**
-     * Modifie la largeur de la fenetre.
-     * @param width
-     */
-    protected void setWidth(int width){
-        this.width = width;
-    }
-
-    /**
-     * Renvoi la largeur de la fenetre.
-     * @param height
-     */
-    protected void setHeight(int height){
-        this.height = height;
     }
 
     /**
@@ -82,37 +59,6 @@ public class PaletteRasterImage implements Image {
     }
 
     /**
-     * la methode vide la palette et rajoute la couleur dans la liste et fixe tous les pixels
-     * de la couleur contenue dans la liste.
-     * @param color
-     */
-    private void setPixelsColor(Color color){
-        palette.clear();
-        palette.add(color);
-        for (int row = 0; row < this.width; row++){
-            for (int column = 0; column < this.height; column++){
-                this.indexesOfColors[row][column] = 0;
-            }
-        }
-    }
-
-    /**
-     * Met à jour les valeurs de couleurs de l’image
-     * en utilisant les valeurs de la matrice donnée en paramètre.
-     * @param pixels de type Color
-     */
-    public void setPixelsColor(Color[][] pixels) {
-        for (int row = 0; row < pixels.length; row++){
-            for (int column = 0; column < pixels[0].length; column++){
-                if (palette.indexOf(pixels[row][column]) == -1){
-                    palette.add(pixels[row][column]);
-                }
-                indexesOfColors[row][column] = palette.indexOf(pixels[row][column]);
-            }
-        }
-    }
-
-    /**
      * La fonction renvoie la couleur contenue dans la liste au coordonnées x, y.
      * @param x un entier
      * @param y un entier
@@ -121,23 +67,5 @@ public class PaletteRasterImage implements Image {
     @Override
     public Color getPixelColor(int x, int y) {
         return palette.get(indexesOfColors[x][y]);
-    }
-
-    /**
-     * Renvoi la largeur de la fenetre
-     * @return this.width
-     */
-    @Override
-    public int getWidth() {
-        return this.width;
-    }
-
-    /**
-     * Renvoi la hauteur de la fenetre
-     * @return this.height
-     */
-    @Override
-    public int getHeight() {
-        return this.height;
     }
 }
