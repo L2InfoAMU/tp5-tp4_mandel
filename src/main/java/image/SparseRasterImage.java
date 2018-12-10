@@ -4,6 +4,9 @@ import javafx.scene.paint.Color;
 
 import java.util.HashMap;
 
+import static util.Matrices.*;
+
+
 public class SparseRasterImage implements Image {
     private int width;
     private int height;
@@ -15,6 +18,16 @@ public class SparseRasterImage implements Image {
         setHeight(height);
         createRepresentation();
         setPixelsColor(color);
+    }
+
+    public SparseRasterImage(Color[][] pixels){
+        requiresRectangularMatrix(pixels);
+        requiresNonNull(pixels);
+        requiresNonZeroDimensions(pixels);
+        setHeight(getColumnCount(pixels));
+        setWidth(getRowCount(pixels));
+        createRepresentation();
+        setPixelsColor(pixels);
     }
 
     public void createRepresentation(){
