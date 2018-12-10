@@ -6,7 +6,6 @@ import java.util.HashMap;
 
 import static util.Matrices.*;
 
-
 public class SparseRasterImage implements Image {
     private int width;
     private int height;
@@ -69,7 +68,9 @@ public class SparseRasterImage implements Image {
      * @param y de type entier.
      */
     public void setPixelColor(Color color, int x, int y){
-        this.pixelsMap.put(new Point(x, y), color);
+        if (!color.equals(Color.WHITE)) {
+            this.pixelsMap.put(new Point(x, y), color);
+        }
     }
 
     /**
