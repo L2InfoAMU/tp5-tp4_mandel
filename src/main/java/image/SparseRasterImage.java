@@ -33,6 +33,7 @@ public class SparseRasterImage implements Image {
     public void createRepresentation(){
         this.pixelsMap = new HashMap<>();
     }
+
     /**
      * Modifie la largeur de la fenetre.
      * @param width
@@ -49,9 +50,13 @@ public class SparseRasterImage implements Image {
         this.height = height;
     }
 
+    public void setPixelColor(Color color, int x, int y){
+        this.pixelsMap.put(new Point(x, y), color);
+    }
+
     @Override
     public Color getPixelColor(int x, int y) {
-        return null;
+        return pixelsMap.get(new Point(x, y));
     }
 
     @Override
