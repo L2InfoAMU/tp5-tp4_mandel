@@ -10,6 +10,13 @@ public class SparseRasterImage implements Image {
     private Point point;
     private HashMap<Point, Color> pixelsMap;
 
+    public SparseRasterImage(Color color, int width, int height){
+        setWidth(width);
+        setHeight(height);
+        createRepresentation();
+        setPixelsColor(color);
+    }
+
     public void createRepresentation(){
         this.pixelsMap = new HashMap<>();
     }
