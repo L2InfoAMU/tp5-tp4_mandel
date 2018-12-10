@@ -19,7 +19,7 @@ public class Rectangle implements Shape {
 
     @Override
     public boolean contains(Point point) {
-        return point.x > this.x && point.x < this.width + this.x && point.y > this.y && point.y < this.height + this.y;
+        return point.x > this.x && point.x <= this.width + this.x && point.y > this.y && point.y <= this.height + this.y;
     }
 
     @Override
