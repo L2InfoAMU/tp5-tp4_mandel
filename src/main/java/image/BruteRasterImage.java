@@ -17,14 +17,10 @@ public class BruteRasterImage implements Image {
      * @param height un entier
      */
     public BruteRasterImage(Color color, int width, int height){
-        this.width = width;
-        this.height = height;
+        setWidth(width);
+        setHeight(height);
         createRepresentation();
-        for (int row = 0; row < width; row++){
-            for (int column = 0; column < height ; column++){
-                this.pixels[row][column] = color;
-            }
-        }
+        setPixelsColor(color);
     }
 
     /**
@@ -38,7 +34,7 @@ public class BruteRasterImage implements Image {
         setHeight(getColumnCount(pixels));
         setWidth(getRowCount(pixels));
         createRepresentation();
-        this.pixels = pixels.clone();
+        setPixelsColor(pixels);
     }
 
     /**
@@ -78,8 +74,13 @@ public class BruteRasterImage implements Image {
      * recopie la matrice pixels passe en parametre.
      * @param pixels de Color
      */
-    private void setPixelsColor(Color[][] pixels){
-        this.pixels = pixels.clone();
+    private void setPixelsColor(Color[][] pixels) {
+        for (int row = 0; row < getWidth(); row++) {
+            for (int column = 0; column < getHeight(); column++) {
+                setPixelColor(pixels[row][column], row, column);
+
+            }
+        }
     }
 
     /**
@@ -87,9 +88,9 @@ public class BruteRasterImage implements Image {
      * @param color de type Color.
      */
     private void setPixelsColor(Color color){
-        for (int row = 0; row < this.width; row++ ){
-            for (int column = 0; column < this.height; column++){
-                this.pixels[row][column] = color;
+        for (int row = 0; row < getWidth(); row++ ){
+            for (int column = 0; column < getHeight(); column++){
+                setPixelColor(color, row, column);
             }
         }
     }

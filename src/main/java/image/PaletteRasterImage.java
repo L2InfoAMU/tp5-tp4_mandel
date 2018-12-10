@@ -9,10 +9,10 @@ import static util.Matrices.*;
 import static util.Matrices.getRowCount;
 
 public class PaletteRasterImage implements Image {
-    int height;
-    int width;
-    int[][] indexesOfColors;
-    List<Color> palette;
+   private int height;
+   private int width;
+   private int[][] indexesOfColors;
+   private List<Color> palette;
 
     /**
      * Constructeur de l'objet.
@@ -89,8 +89,8 @@ public class PaletteRasterImage implements Image {
     private void setPixelsColor(Color color){
         palette.clear();
         palette.add(color);
-        for (int row = 0; row < width; row++){
-            for (int column = 0; column < height; column++){
+        for (int row = 0; row < this.width; row++){
+            for (int column = 0; column < this.height; column++){
                 this.indexesOfColors[row][column] = 0;
             }
         }
